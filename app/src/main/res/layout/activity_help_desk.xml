@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/others">
+
+
+            <Button
+                android:id="@+id/xlri_contact_book"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="15dp"
+                android:text="XLRI Contact Book"
+                android:textSize="20dp"
+                android:onClick="contact"/>
+
+            <Button
+                android:id="@+id/button_laptop_issue"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="15dp"
+                android:text="Socrates Helpdesk"
+                android:textSize="20dp" />
+
+            <Button
+                android:id="@+id/button_infracom__issues"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="15dp"
+                android:text="@string/label_infracom_issues"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+</layout>
