@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ActivityMainBinding mBinder;
     private String roll;
     private Boolean exit = false;
+    private String baseUrl;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +38,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initUI();
         Intent intent = getIntent();
         roll= intent.getStringExtra("roll");
+
+        //get base url for web service
+        baseUrl=PreferenceUtility.getInstance(this).getBaseUrl();
 
     }
 
@@ -62,6 +66,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBinder.buttonHelpdesk.setOnClickListener(this);
         mBinder.buttonAis.setOnClickListener(this);
         mBinder.buttonNotifications.setOnClickListener(this);
+        if(PreferenceUtility.getInstance(this).getIsAdminLoggedIn()){
+            mBinder.buttonChangeServer.setVisibility(View.VISIBLE);
+            mBinder.buttonChangeServer.setOnClickListener(this);
+        }else{
+            mBinder.buttonChangeServer.setVisibility(View.GONE);
+        }
+
     }
 
     @Override
@@ -84,6 +95,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.button_notifications:
                 startActivity(new Intent(this, NotificationsActivity.class));
+                break;
+
+            case R.id.button_change_server:
+                startActivity(new Intent(this, AdminActivity.class));
                 break;
         }
     }
@@ -109,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void search (View v) {
         startActivity(new Intent(this, GoogleFormActivity.class).
-                putExtra(Constants.DATA, Constants.SEARCH_URL).
+                putExtra(Constants.DATA, Constants.getSearchUrl(baseUrl)).
                 putExtra(Constants.FROM, "Student Search"));
     }
 }

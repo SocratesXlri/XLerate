@@ -16,8 +16,11 @@ public class PreferenceUtility {
 
     private static final String PREF_MESS_MENU = "com.xldock.mess_menu";
     private static final String PREF_IS_LOGGED_IN = "com.xldock.isLoggedIn";
+    private static final String PREF_IS_ADMIN_LOGIN = "com.xldock.isAdminLoggedIn";
+    private static final String PREF_BASE_URL = "com.xldock.baseUrl";
     private static final String PREF_UserId = "com.xldock.UserId";
     private static final String PREF_Pwd = "com.xldock.Pwd";
+
     private PreferenceUtility(Context mContext) {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
     }
@@ -39,6 +42,14 @@ public class PreferenceUtility {
         mSharedPreferences.edit().putString(PREF_Pwd, value).apply();
         return value;
     }
+    public String setBaseUrl(String value) {
+        mSharedPreferences.edit().putString(PREF_BASE_URL, value).apply();
+        return value;
+    }
+    public boolean setIsAdminLoggedIn(boolean isAdminLoggedIn) {
+        mSharedPreferences.edit().putBoolean(PREF_IS_ADMIN_LOGIN, isAdminLoggedIn).apply();
+        return isAdminLoggedIn;
+    }
     public String getUserId() {
         if (mSharedPreferences.contains(PREF_UserId)) {
             return mSharedPreferences.getString(PREF_UserId, null);
@@ -50,6 +61,16 @@ public class PreferenceUtility {
             return mSharedPreferences.getString(PREF_Pwd, null);
         }
         return null;
+    }
+    public String getBaseUrl() {
+        if (mSharedPreferences.contains(PREF_BASE_URL)) {
+            return mSharedPreferences.getString(PREF_BASE_URL, null);
+        }
+        return null;
+    }
+    public boolean getIsAdminLoggedIn() {
+        return mSharedPreferences.contains(PREF_IS_ADMIN_LOGIN) &&
+                mSharedPreferences.getBoolean(PREF_IS_ADMIN_LOGIN, false);
     }
     public String getPrefMessMenu() {
         if (mSharedPreferences.contains(PREF_MESS_MENU)) {

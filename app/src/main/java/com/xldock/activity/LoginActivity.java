@@ -14,6 +14,7 @@ import com.xldock.R;
 import com.xldock.WebServiceCalls;
 import com.xldock.databinding.ActivityLoginBinding;
 import com.xldock.model.Generic;
+import com.xldock.utils.Constants;
 import com.xldock.utils.PreferenceUtility;
 
 /**
@@ -38,6 +39,15 @@ public class LoginActivity extends AppCompatActivity implements WebServiceCalls.
             @Override
             public void onClick(View v) {
                 doLogin();
+//                startActivity(new Intent(LoginActivity.this,MainActivity.class).addFlags
+//                        (Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP).putExtra("roll",roll).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+
+            }
+        });
+        mBinder.tvAdminLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this,AdminLoginActivity.class));
             }
         });
 
@@ -80,10 +90,11 @@ public class LoginActivity extends AppCompatActivity implements WebServiceCalls.
             PreferenceUtility.getInstance(this).setPrefIsLoggedIn("true");
             PreferenceUtility.getInstance(this).setUserId(roll);
             PreferenceUtility.getInstance(this).setPwd(pwd);
+            PreferenceUtility.getInstance(this).setBaseUrl(Constants.LIVE_URL);
             Toast.makeText(this, "Login Successful",Toast.LENGTH_SHORT).show();
         }
         else{
-            Toast.makeText(this,"Please provide correct credentials",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,R.string.provide_correct_credentials,Toast.LENGTH_SHORT).show();
         }
     }
 
