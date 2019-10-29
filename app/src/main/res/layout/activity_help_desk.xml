@@ -12,36 +12,87 @@
             <Button
                 android:id="@+id/xlri_contact_book"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="80dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
                 android:padding="15dp"
                 android:text="XLRI Contact Book"
-                android:textSize="20dp"
+                android:textColor="#FFFFFF"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:background="@drawable/ais"
                 android:onClick="contact"/>
 
             <Button
-                android:id="@+id/button_laptop_issue"
+                android:id="@+id/button_spare_laptop"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="80dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/mess"
                 android:padding="15dp"
-                android:text="Socrates Helpdesk"
-                android:textSize="20dp" />
+                android:text="Spare Laptop Request"
+                android:textColor="#FFFFFF"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button_mac_register"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/mess"
+                android:padding="15dp"
+                android:text="Mac Id Registration"
+                android:textColor="#FFFFFF"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button_xlerate_issues"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/mess"
+                android:padding="15dp"
+                android:text="XLerate Issues"
+                android:textColor="#FFFFFF"
+                android:textSize="25dp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/button_infracom__issues"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="80dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
                 android:padding="15dp"
                 android:text="@string/label_infracom_issues"
-                android:textSize="20dp" />
+                android:background="@drawable/notice"
+                android:textColor="#FFFFFF"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button_charms"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="15dp"
+                android:text="CHARMS (COMPLAINTS)"
+                android:background="@drawable/helpdesk"
+                android:textColor="#FFFFFF"
+                android:textSize="25dp"
+                android:textStyle="bold"/>
 
         </LinearLayout>
 </layout>
