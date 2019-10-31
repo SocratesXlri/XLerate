@@ -51,7 +51,7 @@ public class HelpdeskActivity extends AppCompatActivity implements View.OnClickL
 
             case R.id.button_mac_register:
                 startActivity(new Intent(this, GoogleFormActivity.class).
-                        putExtra(Constants.DATA, Constants.LAPTOP_ISSUE_FORM_URL).
+                        putExtra(Constants.DATA, Constants.MAC_ID_REGISTERATION_URL).
                         putExtra(Constants.FROM,"Mac Id Registration"));
                 break;
 
