@@ -8,7 +8,7 @@ public class Constants {
 
     //server URLs
     public static String LIVE_URL="http://acad.xlri.ac.in/aisapp";
-    public static String DEBUG_URL="http://192.168.100.117";
+    public static String DEBUG_URL="";
 
     //form URLs
     public static final String LAPTOP_ISSUE_FORM_URL="https://docs.google.com/forms/d/e/1FAIpQLSdXHlDoO-3l3E9CO0Ek3Z8RYV1g9PWuTDUDYKpTSKPJQ0mxIA/viewform?usp=sf_link";

@@ -57,7 +57,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(this,LoginActivity.class).addFlags
                     (Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
             PreferenceUtility.getInstance(this).setPrefIsLoggedIn("false");
-            PreferenceUtility.getInstance(this).setUserId("");}
+            PreferenceUtility.getInstance(this).setUserId("");
+            PreferenceUtility.getInstance(this).setBaseUrl(null);
+
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -128,3 +131,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 putExtra(Constants.FROM, "Student Search"));
     }
 }
+

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,9 +23,10 @@ import com.xldock.utils.PreferenceUtility;
  * Created by honey on 10/11/17.
  */
 
-public class AdminActivity extends AppCompatActivity{
+public class AdminActivity extends AppCompatActivity {
 
     private ActivityAdminBinding mBinder;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,18 +38,13 @@ public class AdminActivity extends AppCompatActivity{
     }
 
     private void initUI() {
-        String baseUrl=PreferenceUtility.getInstance(this).getBaseUrl();
-        if(baseUrl.equals(Constants.DEBUG_URL))
-            mBinder.radioDebug.setChecked(true);
-        else
-         mBinder.radioLive.setChecked(true);
-        mBinder.radioDebug.setText(Constants.DEBUG_URL);
-        mBinder.radioLive.setText(Constants.LIVE_URL);
+        String baseUrl = PreferenceUtility.getInstance(this).getBaseUrl();
+        mBinder.etUrl.setText(baseUrl);
     }
 
-        @Override
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
 
             case android.R.id.home:
                 onBackPressed();
@@ -57,20 +54,27 @@ public class AdminActivity extends AppCompatActivity{
         return true;
     }
 
-    public void onClickButtonMethod(View v){
-        int selectedId = mBinder.radioGroup.getCheckedRadioButtonId();
-        RadioButton serverRadioButton = (RadioButton) findViewById(selectedId);
-
-        if(selectedId==-1){
-            Toast.makeText(this,"Nothing selected", Toast.LENGTH_SHORT).show();
+    public void onSave(View v) {
+        String baseUrl = mBinder.etUrl.getText().toString();
+        boolean isValidUrl = Patterns.WEB_URL.matcher(baseUrl).matches();
+        if (!isValidUrl || (!baseUrl.contains("http://") && !baseUrl.contains("https://"))) {
+            Toast.makeText(this, R.string.valid_url, Toast.LENGTH_SHORT).show();
+        } else {
+            PreferenceUtility.getInstance(this).setBaseUrl(baseUrl);
+            mBinder.etUrl.clearFocus();
+            mBinder.etUrl.setFocusableInTouchMode(false);
+            mBinder.etUrl.clearFocus();
+            mBinder.buttonEdit.setVisibility(View.VISIBLE);
+            mBinder.buttonSave.setVisibility(View.GONE);
+            initUI();
         }
-        else{
-            String selectedUrl=serverRadioButton.getText().toString();
-            PreferenceUtility.getInstance(this).setBaseUrl(selectedUrl);
-            //Toast.makeText(this,selectedUrl, Toast.LENGTH_SHORT).show();
-            onBackPressed();
-        }
+    }
 
+    public void onEdit(View v) {
+        mBinder.etUrl.setFocusableInTouchMode(true);
+        mBinder.etUrl.requestFocus();
+        mBinder.buttonEdit.setVisibility(View.GONE);
+        mBinder.buttonSave.setVisibility(View.VISIBLE);
     }
 
 }

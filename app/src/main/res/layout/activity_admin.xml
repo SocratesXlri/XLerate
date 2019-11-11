@@ -1,40 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@drawable/others">
 
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/radioGroup">
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <RadioButton
-                android:id="@+id/radioDebug"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/et_url"
+                android:inputType="textUri"
+                android:layout_marginTop="24dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginLeft="24dp"
+                android:focusableInTouchMode="false"
+                android:layout_marginRight="24dp"/>
 
-            <RadioButton
-                android:id="@+id/radioLive"
-                android:layout_width="wrap_content"
+
+            <Button
+                android:id="@+id/button_save"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp" />
-        </RadioGroup>
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="24dp"
+                android:visibility="gone"
+                android:onClick="onSave"
+                android:text="@string/lbl_save"/>
+
+            <Button
+                android:id="@+id/button_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="24dp"
+                android:visibility="visible"
+                android:onClick="onEdit"
+                android:text="@string/lbl_edit"/>
 
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="@string/label_save"
-            android:id="@+id/button"
-            android:onClick="onClickButtonMethod"
-            android:layout_gravity="center_horizontal" />
-
-    </LinearLayout>
-
+        </LinearLayout>
 </layout>
