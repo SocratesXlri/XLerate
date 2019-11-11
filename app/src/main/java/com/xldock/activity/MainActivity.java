@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             PreferenceUtility.getInstance(this).setPrefIsLoggedIn("false");
             PreferenceUtility.getInstance(this).setUserId("");
             PreferenceUtility.getInstance(this).setBaseUrl(null);
+            PreferenceUtility.getInstance(this).setIsAdminLoggedIn(false);
 
         }
         return super.onOptionsItemSelected(item);

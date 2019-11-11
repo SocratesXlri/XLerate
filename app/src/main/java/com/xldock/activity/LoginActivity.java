@@ -100,6 +100,7 @@ public class LoginActivity extends AppCompatActivity implements WebServiceCalls.
             PreferenceUtility.getInstance(this).setPrefIsLoggedIn("true");
             PreferenceUtility.getInstance(this).setUserId(roll);
             PreferenceUtility.getInstance(this).setPwd(pwd);
+            PreferenceUtility.getInstance(this).setIsAdminLoggedIn(false);
             PreferenceUtility.getInstance(this).setBaseUrl(Constants.LIVE_URL);
             Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
         } else {
