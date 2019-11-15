@@ -57,7 +57,7 @@ public class HelpdeskActivity extends AppCompatActivity implements View.OnClickL
 
             case R.id.button_xlerate_issues:
                 startActivity(new Intent(this, GoogleFormActivity.class).
-                        putExtra(Constants.DATA, Constants.LAPTOP_ISSUE_FORM_URL).
+                        putExtra(Constants.DATA, Constants.XLERATE_ISSUES_URL).
                         putExtra(Constants.FROM,"XLerate Issues"));
                 break;
 
