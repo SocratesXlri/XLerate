@@ -13,6 +13,8 @@
     <string name="error_occurred">The following error occurred:</string>
     <string name="install_google_play">This app requires Google Play Services. Please install
         Google Play Services on your device and relaunch this app.</string>
+    <string name="provide_correct_credentials">Please provide correct credentials</string>
+    <string name="valid_url">Please enter valid URL</string>
     <string name="date">Date :&#160;</string>
     <string name="breakfast">Breakfast :&#160;</string>
     <string name="committee">%1$s :</string>
@@ -35,6 +37,7 @@
     <string name="select_hostel">Select hostel</string>
     <string name="laptop_issue_url">https://docs.google.com/forms/d/e/1FAIpQLSdXHlDoO-3l3E9CO0Ek3Z8RYV1g9PWuTDUDYKpTSKPJQ0mxIA/viewform?usp=sf_link</string>
     <string name="label_ais">AIS</string>
+    <string name="label_change_server">Change server</string>
     <string name="label_my_schedule">My Schedule</string>
     <string name="label_grades">Grades</string>
     <string name="label_search">Search</string>
@@ -42,6 +45,9 @@
     <string name="label_infracom_issues">Infracom Issues</string>
     <string name="label_charms">C.H.A.R.M.S</string>
     <string name="label_refresh">Refresh</string>
+    <string name="label_save">Save</string>
+    <string name="lbl_save">Save</string>
+    <string name="lbl_edit">Edit</string>
 
 
     <string-array name="menu_options">

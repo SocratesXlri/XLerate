@@ -22,6 +22,7 @@ public class AisActivity extends AppCompatActivity implements View.OnClickListen
 
     private ActivityAisBinding mBinder;
     private String roll;
+    private String baseUrl;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +33,8 @@ public class AisActivity extends AppCompatActivity implements View.OnClickListen
         initUI();
         Intent intent = getIntent();
         roll=intent.getStringExtra("roll") ;
+        baseUrl=PreferenceUtility.getInstance(this).getBaseUrl();
+
     }
 
     private void initUI() {
@@ -57,19 +60,19 @@ public class AisActivity extends AppCompatActivity implements View.OnClickListen
         switch (v.getId()) {
             case R.id.button_grades:
                 startActivity(new Intent(this, GoogleFormActivity.class).
-                        putExtra(Constants.DATA, Constants.GRADES_URL+roll+"&PWD=PreferenceUtility.getInstance(this).getPwd())").
+                        putExtra(Constants.DATA, Constants.getGradesUrl(baseUrl)+roll+"&PWD=PreferenceUtility.getInstance(this).getPwd())").
                         putExtra(Constants.FROM, getString(R.string.label_grades)));
 
                 break;
             case R.id.button_my_schedule:
                 startActivity(new Intent(this, GoogleFormActivity.class).
-                        putExtra(Constants.DATA, Constants.MY_SCHEDULE_URL+roll).
+                        putExtra(Constants.DATA, Constants.getMyScheduleUrl(baseUrl)+roll).
                         putExtra(Constants.FROM, getString(R.string.label_my_schedule)));
                 break;
 
             case R.id.button_course_schedule:
                 startActivity(new Intent(this, GoogleFormActivity.class).
-                        putExtra(Constants.DATA, Constants.COURSE_SCHEDULE_URL).
+                        putExtra(Constants.DATA, Constants.getCourseScheduleUrl(baseUrl)).
                         putExtra(Constants.FROM, getString(R.string.label_course_schedule)));
                 break;
 

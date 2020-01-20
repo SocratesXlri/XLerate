@@ -50,6 +50,16 @@
         <activity
             android:name=".activity.LoginActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.AdminLoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.AdminActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.AdminRadioButtonActivity"
+            android:screenOrientation="portrait" />
+
         <activity android:name=".activity.Splash_screen">
         </activity>
     </application>

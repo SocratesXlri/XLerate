@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"
-            android:hint="AIS UserId (e.g. H16XXX)"
+            android:hint="Username"
             android:layout_marginRight="24dp"/>
 
         <EditText
@@ -29,8 +29,6 @@
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"/>
 
-
-
         <Button
             android:id="@+id/button_login"
             android:layout_width="match_parent"
@@ -40,26 +38,6 @@
             android:layout_marginTop="24dp"
             android:layout_marginRight="24dp"
             android:text="Login"/>
-
-        <!--<Button-->
-            <!--android:id="@+id/button_admin_login"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginLeft="24dp"-->
-            <!--android:layout_below="@id/button_login"-->
-            <!--android:layout_marginTop="24dp"-->
-            <!--android:layout_marginRight="24dp"-->
-            <!--android:text="AdminLogin"/>-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/tv_admin_login"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_below="@id/button_login"-->
-            <!--android:layout_marginTop="24dp"-->
-            <!--android:layout_centerHorizontal="true"-->
-            <!--android:gravity="center"-->
-            <!--android:text="Are you an admin? Click here to login"/>-->
 
         <ProgressBar
             android:id="@+id/progress_bar"

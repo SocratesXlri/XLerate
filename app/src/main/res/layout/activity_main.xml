@@ -1,92 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@drawable/others">
+        android:background="@drawable/others"
+        android:fillViewport="true">
 
-        <Button
-            android:id="@+id/button_ais"
-            android:text="@string/label_ais"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/ais"
-            android:textColor="#FFFFFF"
-            android:textSize="25dp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/button_mess_menu"
-            android:text="@string/mess_menu"
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/mess"
-            android:textColor="#FFFFFF"
-            android:textSize="25dp"
-            android:textStyle="bold" />
-
-        <Button
-        android:id="@+id/button_notifications"
-        android:text="Notice Board"
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/notice"
-            android:textColor="#FFFFFF"
-            android:textSize="25dp"
-            android:textStyle="bold" />
-
-        <Button
-        android:id="@+id/button_helpdesk"
-        android:text="@string/helpdesk"
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/helpdesk"
-            android:textColor="#FFFFFF"
-            android:textSize="25dp"
-            android:textStyle="bold" />
-
-        <Button
-            android:text="Student Search"
-            android:onClick="search"
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/search"
-            android:textColor="#FFFFFF"
-            android:textSize="25dp"
-            android:textStyle="bold"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <Button
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
-                android:background="@drawable/socrates"
-                />
+                android:id="@+id/button_ais"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/ais"
+                android:text="@string/label_ais"
+                android:textColor="#FFFFFF"
+                android:textSize="25dp"
+                android:textStyle="bold" />
 
             <Button
-                android:layout_width="65dp"
-                android:layout_height="65dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:background="@drawable/sac"
-                />
-        </RelativeLayout>
+                android:id="@+id/button_mess_menu"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/mess"
+                android:text="@string/mess_menu"
+                android:textColor="#FFFFFF"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button_notifications"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/notice"
+                android:text="Notice Board"
+                android:textColor="#FFFFFF"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button_helpdesk"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/helpdesk"
+                android:text="@string/helpdesk"
+                android:textColor="#FFFFFF"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/search"
+                android:onClick="search"
+                android:text="Student Search"
+                android:textColor="#FFFFFF"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button_change_server"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/search"
+                android:text="Change Server"
+                android:textColor="#FFFFFF"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:orientation="horizontal">-->
 
 
-    </LinearLayout>
+            <!--<Button-->
+            <!--android:layout_width="100dp"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_alignParentStart="true"-->
+            <!--android:background="@drawable/socrates"-->
+            <!--/>-->
+
+            <!--<Button-->
+            <!--android:layout_width="65dp"-->
+            <!--android:layout_height="65dp"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:background="@drawable/sac"-->
+            <!--/>-->
+            <!--</RelativeLayout>-->
+
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </layout>
