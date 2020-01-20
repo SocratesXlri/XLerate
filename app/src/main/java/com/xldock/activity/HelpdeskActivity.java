@@ -32,18 +32,33 @@ public class HelpdeskActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void initUI() {
-        mBinder.buttonLaptopIssue.setOnClickListener(this);
+        mBinder.buttonSpareLaptop.setOnClickListener(this);
+        mBinder.buttonMacRegister.setOnClickListener(this);
+        mBinder.buttonXlerateIssues.setOnClickListener(this);
         mBinder.buttonInfracomIssues.setOnClickListener(this);
+        mBinder.buttonCharms.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
 
-            case R.id.button_laptop_issue:
+            case R.id.button_spare_laptop:
                 startActivity(new Intent(this, GoogleFormActivity.class).
                         putExtra(Constants.DATA, Constants.LAPTOP_ISSUE_FORM_URL).
-                        putExtra(Constants.FROM,"Socrates Helpdesk"));
+                        putExtra(Constants.FROM,"Spare Laptop Request"));
+                break;
+
+            case R.id.button_mac_register:
+                startActivity(new Intent(this, GoogleFormActivity.class).
+                        putExtra(Constants.DATA, Constants.MAC_ID_REGISTERATION_URL).
+                        putExtra(Constants.FROM,"Mac Id Registration"));
+                break;
+
+            case R.id.button_xlerate_issues:
+                startActivity(new Intent(this, GoogleFormActivity.class).
+                        putExtra(Constants.DATA, Constants.LAPTOP_ISSUE_FORM_URL).
+                        putExtra(Constants.FROM,"XLerate Issues"));
                 break;
 
             case R.id.button_infracom__issues:
@@ -51,6 +66,13 @@ public class HelpdeskActivity extends AppCompatActivity implements View.OnClickL
                         putExtra(Constants.DATA, Constants.INFRACOM_ISSUES_FORM_URL).
                         putExtra(Constants.FROM,getString(R.string.label_infracom_issues)));
                 break;
+
+            case R.id.button_charms:
+                startActivity(new Intent(this, GoogleFormActivity.class).
+                        putExtra(Constants.DATA, Constants.CHARMS_URL).
+                        putExtra(Constants.FROM,getString(R.string.label_charms)));
+                break;
+
         }
     }
 
