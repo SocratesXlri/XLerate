@@ -1,25 +1,26 @@
 
 package com.xldock.activity;
 
-        import android.content.Context;
-        import android.content.Intent;
-        import android.databinding.DataBindingUtil;
-        import android.graphics.Bitmap;
-        import android.net.ConnectivityManager;
-        import android.net.NetworkInfo;
-        import android.os.Bundle;
-        import android.support.annotation.Nullable;
-        import android.support.v7.app.AppCompatActivity;
-        import android.view.MenuItem;
-        import android.view.View;
-        import android.webkit.WebSettings;
-        import android.webkit.WebView;
-        import android.webkit.WebViewClient;
-        import android.widget.Toast;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.Toast;
 
-        import com.xldock.R;
-        import com.xldock.databinding.ActivityGoogleFormBinding;
-        import com.xldock.utils.Constants;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
+import com.xldock.R;
+import com.xldock.databinding.ActivityGoogleFormBinding;
+import com.xldock.utils.Constants;
 
 /**
  * Created by Honey Shah on 18-11-2017.
@@ -62,9 +63,10 @@ public class GoogleFormActivity extends AppCompatActivity {
 
                 view.setVisibility(View.INVISIBLE);
                 Toast.makeText(GoogleFormActivity.this, "Unable to reach AIS Server at the moment", Toast.LENGTH_LONG).show();
-                Intent intent=new Intent(GoogleFormActivity.this, MainActivity.class);
+                Intent intent = new Intent(GoogleFormActivity.this, MainActivity.class);
                 startActivity(intent);
             }
+
             @Override
             public void onPageStarted(WebView view, String url, Bitmap facIcon) {
                 mBinder.progressBar.setVisibility(View.VISIBLE);

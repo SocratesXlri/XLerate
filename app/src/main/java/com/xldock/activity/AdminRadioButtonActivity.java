@@ -1,13 +1,14 @@
 package com.xldock.activity;
 
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import com.xldock.R;
 import com.xldock.databinding.ActivityAdminBinding;
@@ -19,7 +20,7 @@ import com.xldock.utils.PreferenceUtility;
  * Created by honey on 10/11/17.
  */
 
-public class AdminRadioButtonActivity extends AppCompatActivity{
+public class AdminRadioButtonActivity extends AppCompatActivity {
 
     private ActivityAdminRadioButtonBinding mBinder;
     @Override
