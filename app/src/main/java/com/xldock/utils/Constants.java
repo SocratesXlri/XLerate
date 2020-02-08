@@ -15,7 +15,8 @@ public class Constants {
     public static final String LAPTOP_ISSUE_FORM_URL="https://docs.google.com/forms/d/e/1FAIpQLSdXHlDoO-3l3E9CO0Ek3Z8RYV1g9PWuTDUDYKpTSKPJQ0mxIA/viewform?usp=sf_link";
     public static final String INTERNET_COMPLAINTS_URL="https://docs.google.com/forms/d/e/1FAIpQLSdpsmht_CQPeEnSOnv77YVj-QPUHSOFI_qom-PQE8V6FE47rg/viewform?usp=sf_link";
     public static final String MAC_ID_REGISTERATION_URL="https://docs.google.com/forms/d/e/1FAIpQLScLMw2jAUkWyTgJe-VKmCGp90NEvQ-0ZQFL6zNOurtXI-YtJw/viewform?usp=sf_link";
-    public static final String INFRACOM_ISSUES_FORM_URL=" https://docs.google.com/forms/d/e/1FAIpQLScGMn2EU-s8SlZxvHnRd2iPNcNBdDX67TWUHK-k8DYgIUq8zw/viewform";
+    public static final String INFRACOM_ISSUES_FORM_URL="https://docs.google.com/forms/d/e/1FAIpQLScGMn2EU-s8SlZxvHnRd2iPNcNBdDX67TWUHK-k8DYgIUq8zw/viewform";
+    public static final String NOTICE_BOARD2_URL="http://google.com";
 
     //others
     public static final String FROM ="from";
@@ -35,7 +36,7 @@ public class Constants {
 
     public static String getGradesUrl(String url, String baseFolder) {
         return url+"/"+baseFolder+"/"+GRADES_URL;
-    }
+}
 
     public static String getMyScheduleUrl(String url, String baseFolder) {
         return url+"/"+baseFolder+"/"+MY_SCHEDULE_URL;

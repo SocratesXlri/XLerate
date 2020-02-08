@@ -21,13 +21,14 @@ import com.xldock.utils.PreferenceUtility;
  * Created by honey on 10/11/17.
  */
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ActivityMainBinding mBinder;
     private String roll;
     private Boolean exit = false;
     private String baseUrl;
     private String baseFolder;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,26 +37,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getSupportActionBar().setTitle(getString(R.string.app_name));
         initUI();
         Intent intent = getIntent();
-        roll= intent.getStringExtra("roll");
+        roll = intent.getStringExtra("roll");
 
-        //get base url for web service
-        baseUrl=PreferenceUtility.getInstance(this).getBaseUrl();
-        baseFolder=PreferenceUtility.getInstance(this).getBaseFolder();
+        //get base url and base folder for web service
+//        baseUrl=PreferenceUtility.getInstance(this).getBaseUrl();
+//        baseFolder=PreferenceUtility.getInstance(this).getBaseFolder();
 
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        //get base url and base folder  for web service
+        baseUrl = PreferenceUtility.getInstance(this).getBaseUrl();
+        baseFolder = PreferenceUtility.getInstance(this).getBaseFolder();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_refresh, menu);
+        getMenuInflater().inflate(R.menu.menu_logout, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.action_logout){
-            startActivity(new Intent(this,LoginActivity.class).addFlags
-                    (Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+        if (id == R.id.action_logout) {
+            startActivity(new Intent(this, LoginActivity.class).addFlags
+                    (Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
             //set all back to normal on logout
             PreferenceUtility.getInstance(this).setPrefIsLoggedIn("false");
             PreferenceUtility.getInstance(this).setUserId("");
@@ -72,10 +81,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBinder.buttonHelpdesk.setOnClickListener(this);
         mBinder.buttonAis.setOnClickListener(this);
         mBinder.buttonNotifications.setOnClickListener(this);
-        if(PreferenceUtility.getInstance(this).getIsAdminLoggedIn()){
+        mBinder.buttonNoticeBoard2.setOnClickListener(this);
+        if (PreferenceUtility.getInstance(this).getIsAdminLoggedIn()) {
             mBinder.buttonChangeServer.setVisibility(View.VISIBLE);
             mBinder.buttonChangeServer.setOnClickListener(this);
-        }else{
+        } else {
             mBinder.buttonChangeServer.setVisibility(View.GONE);
         }
 
@@ -93,9 +103,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.button_ais:
-                Intent intent= new Intent(MainActivity.this, AisActivity.class);
-                intent.putExtra("roll",roll);
-                Toast.makeText(this,roll,Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, AisActivity.class);
+                intent.putExtra("roll", roll);
+                Toast.makeText(this, roll, Toast.LENGTH_SHORT).show();
                 startActivity(intent);
                 break;
 
@@ -106,6 +116,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.button_change_server:
                 startActivity(new Intent(this, AdminActivity.class));
                 break;
+
+            case R.id.button_notice_board2:
+                startActivity(new Intent(this, NoticeBoard2Activity.class).
+                        putExtra(Constants.DATA, Constants.NOTICE_BOARD2_URL));
+                break;
+
+
         }
     }
 
@@ -128,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public void search (View v) {
+    public void search(View v) {
         startActivity(new Intent(this, GoogleFormActivity.class).
                 putExtra(Constants.DATA, Constants.getSearchUrl(baseUrl, baseFolder)).
                 putExtra(Constants.FROM, "Student Search"));

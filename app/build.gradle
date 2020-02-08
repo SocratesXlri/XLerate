@@ -44,7 +44,7 @@ dependencies {
         exclude group: 'org.apache.httpcomponents'
     }
     //Volley
-    implementation 'org.apache.httpcomponents:httpmime:4.5.6'
+    implementation 'org.apache.httpcomponents:httpmime:4.3.5'
 //    implementation 'org.apache.httpcomponents:httpclient-android:4.3.5.1'
     implementation 'org.apache.httpcomponents:httpcore:4.4.10'
 //    implementation 'org.apache.httpcomponents:httpclient:4.5'

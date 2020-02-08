@@ -3,7 +3,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <LinearLayout
@@ -11,72 +11,83 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/et_url"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginRight="24dp"
-                android:focusableInTouchMode="false"
-                android:inputType="textUri" />
+                android:orientation="horizontal">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/base_url"
+                    android:gravity="center" />
+
+
+                <EditText
+                    android:id="@+id/et_url"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/base_url"
+                    android:inputType="textUri" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="24dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/base_folder"
+                    android:gravity="center"
+
+                    android:textAlignment="center" />
+
+
+                <EditText
+                    android:id="@+id/et_folder"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/base_folder"/>
+            </LinearLayout>
 
             <Button
                 android:id="@+id/button_save"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginRight="24dp"
                 android:onClick="onSave"
+                android:layout_gravity="center"
                 android:text="@string/lbl_save"
                 android:visibility="gone" />
 
             <Button
                 android:id="@+id/button_edit"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
                 android:layout_marginTop="24dp"
+                android:layout_gravity="center"
                 android:layout_marginRight="24dp"
                 android:onClick="onEdit"
                 android:text="@string/lbl_edit"
                 android:visibility="visible" />
-
-            <EditText
-                android:id="@+id/et_folder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginRight="24dp"
-                android:focusableInTouchMode="false"
-                android:inputType="textUri" />
-
-
-            <Button
-                android:id="@+id/button_folder_save"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginRight="24dp"
-                android:onClick="onFolderSave"
-                android:text="@string/lbl_save"
-                android:visibility="gone" />
-
-            <Button
-                android:id="@+id/button_folder_edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginRight="24dp"
-                android:onClick="onFolderEdit"
-                android:text="@string/lbl_edit"
-                android:visibility="visible" />
-
 
         </LinearLayout>
     </ScrollView>

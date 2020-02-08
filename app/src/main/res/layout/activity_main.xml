@@ -69,12 +69,24 @@
                 android:textStyle="bold" />
 
             <Button
+                android:id="@+id/button_notice_board2"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/search"
+                android:text="@string/lbl_notice_board2"
+                android:textColor="#FFFFFF"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:visibility="visible" />
+
+            <Button
                 android:id="@+id/button_change_server"
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/search"
-                android:text="Change Server"
+                android:text="@string/lbl_change_server"
                 android:textColor="#FFFFFF"
                 android:textSize="25dp"
                 android:textStyle="bold"

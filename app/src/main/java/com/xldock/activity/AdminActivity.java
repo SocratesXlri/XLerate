@@ -17,7 +17,6 @@ import androidx.databinding.DataBindingUtil;
 
 import com.xldock.R;
 import com.xldock.databinding.ActivityAdminBinding;
-import com.xldock.databinding.ActivityMainBinding;
 import com.xldock.utils.Constants;
 import com.xldock.utils.PreferenceUtility;
 
@@ -41,7 +40,9 @@ public class AdminActivity extends AppCompatActivity {
 
     private void initUI() {
         String baseUrl = PreferenceUtility.getInstance(this).getBaseUrl();
+        String baseFolder = PreferenceUtility.getInstance(this).getBaseFolder();
         mBinder.etUrl.setText(baseUrl);
+        mBinder.etFolder.setText(baseFolder);
     }
 
     @Override
@@ -58,45 +59,36 @@ public class AdminActivity extends AppCompatActivity {
 
     public void onSave(View v) {
         String baseUrl = mBinder.etUrl.getText().toString();
+        String folder = mBinder.etFolder.getText().toString();
         boolean isValidUrl = Patterns.WEB_URL.matcher(baseUrl).matches();
         if (!isValidUrl || (!baseUrl.contains("http://") && !baseUrl.contains("https://"))) {
             Toast.makeText(this, R.string.valid_url, Toast.LENGTH_SHORT).show();
-        } else {
+        }
+        else if (TextUtils.isEmpty(folder)) {
+            Toast.makeText(this, R.string.folder_name_empty, Toast.LENGTH_SHORT).show();
+        }
+        else {
             PreferenceUtility.getInstance(this).setBaseUrl(baseUrl);
+            PreferenceUtility.getInstance(this).setBaseFolder(folder);
             mBinder.etUrl.clearFocus();
+            mBinder.etFolder.clearFocus();
             mBinder.etUrl.setFocusableInTouchMode(false);
+            mBinder.etFolder.setFocusableInTouchMode(false);
             mBinder.etUrl.clearFocus();
+            mBinder.etFolder.clearFocus();
             mBinder.buttonEdit.setVisibility(View.VISIBLE);
             mBinder.buttonSave.setVisibility(View.GONE);
             initUI();
+
         }
     }
 
-    public void onFolderSave(View v) {
-        String folder = mBinder.etFolder.getText().toString();
-        if (TextUtils.isEmpty(folder)) {
-            Toast.makeText(this, R.string.folder_name_empty, Toast.LENGTH_SHORT).show();
-        } else {
-            PreferenceUtility.getInstance(this).setBaseFolder(folder);
-            mBinder.etFolder.clearFocus();
-            mBinder.etFolder.setFocusableInTouchMode(false);
-            mBinder.etFolder.clearFocus();
-            mBinder.buttonFolderEdit.setVisibility(View.VISIBLE);
-            mBinder.buttonFolderSave.setVisibility(View.GONE);
-            initUI();
-        }
-    }
 
-    public void onFolderEdit(View v) {
-        mBinder.etFolder.setFocusableInTouchMode(true);
-        mBinder.etFolder.requestFocus();
-        mBinder.buttonFolderEdit.setVisibility(View.GONE);
-        mBinder.buttonFolderSave.setVisibility(View.VISIBLE);
-    }
 
     public void onEdit(View v) {
         mBinder.etUrl.setFocusableInTouchMode(true);
         mBinder.etUrl.requestFocus();
+        mBinder.etFolder.setFocusableInTouchMode(true);
         mBinder.buttonEdit.setVisibility(View.GONE);
         mBinder.buttonSave.setVisibility(View.VISIBLE);
     }
