@@ -18,6 +18,7 @@ public class PreferenceUtility {
     private static final String PREF_IS_LOGGED_IN = "com.xldock.isLoggedIn";
     private static final String PREF_IS_ADMIN_LOGIN = "com.xldock.isAdminLoggedIn";
     private static final String PREF_BASE_URL = "com.xldock.baseUrl";
+    private static final String PREF_BASE_FOLDER = "com.xldock.baseFolder";
     private static final String PREF_UserId = "com.xldock.UserId";
     private static final String PREF_Pwd = "com.xldock.Pwd";
 
@@ -46,6 +47,10 @@ public class PreferenceUtility {
         mSharedPreferences.edit().putString(PREF_BASE_URL, value).apply();
         return value;
     }
+    public String setBaseFolder(String value) {
+        mSharedPreferences.edit().putString(PREF_BASE_FOLDER, value).apply();
+        return value;
+    }
     public boolean setIsAdminLoggedIn(boolean isAdminLoggedIn) {
         mSharedPreferences.edit().putBoolean(PREF_IS_ADMIN_LOGIN, isAdminLoggedIn).apply();
         return isAdminLoggedIn;
@@ -65,6 +70,12 @@ public class PreferenceUtility {
     public String getBaseUrl() {
         if (mSharedPreferences.contains(PREF_BASE_URL)) {
             return mSharedPreferences.getString(PREF_BASE_URL, null);
+        }
+        return null;
+    }
+    public String getBaseFolder() {
+        if (mSharedPreferences.contains(PREF_BASE_FOLDER)) {
+            return mSharedPreferences.getString(PREF_BASE_FOLDER, null);
         }
         return null;
     }

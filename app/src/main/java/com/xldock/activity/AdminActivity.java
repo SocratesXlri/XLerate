@@ -3,6 +3,7 @@ package com.xldock.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -69,6 +70,28 @@ public class AdminActivity extends AppCompatActivity {
             mBinder.buttonSave.setVisibility(View.GONE);
             initUI();
         }
+    }
+
+    public void onFolderSave(View v) {
+        String folder = mBinder.etFolder.getText().toString();
+        if (TextUtils.isEmpty(folder)) {
+            Toast.makeText(this, R.string.folder_name_empty, Toast.LENGTH_SHORT).show();
+        } else {
+            PreferenceUtility.getInstance(this).setBaseFolder(folder);
+            mBinder.etFolder.clearFocus();
+            mBinder.etFolder.setFocusableInTouchMode(false);
+            mBinder.etFolder.clearFocus();
+            mBinder.buttonFolderEdit.setVisibility(View.VISIBLE);
+            mBinder.buttonFolderSave.setVisibility(View.GONE);
+            initUI();
+        }
+    }
+
+    public void onFolderEdit(View v) {
+        mBinder.etFolder.setFocusableInTouchMode(true);
+        mBinder.etFolder.requestFocus();
+        mBinder.buttonFolderEdit.setVisibility(View.GONE);
+        mBinder.buttonFolderSave.setVisibility(View.VISIBLE);
     }
 
     public void onEdit(View v) {

@@ -8,6 +8,7 @@ public class Constants {
 
     //server URLs
     public static String LIVE_URL="http://acad.xlri.ac.in/aisapp";
+    public static String LIVE_FOLDER="aitemp";
     public static String DEBUG_URL="";
 
     //form URLs
@@ -25,25 +26,26 @@ public class Constants {
     public static String ADMIN_PASSWORD="admin@123";
 
     //web services end points
-    private static String GRADES_URL= "/aitemp/my-grades.php?SID=";
+    private static String GRADES_URL= "my-grades.php?SID=";
+    private static String MY_SCHEDULE_URL= "my-schedule.php?SID=";
+    private static String COURSE_SCHEDULE_URL= "course-list.php";
+    private static String SEARCH_URL="search.php";
     public static String CHARMS_URL= "http://charms.tk/";
-    private static String MY_SCHEDULE_URL= "/aitemp/my-schedule.php?SID=";
-    private static String COURSE_SCHEDULE_URL= "/aitemp/course-list.php";
-    private static String SEARCH_URL="/aitemp/search.php";
 
-    public static String getGradesUrl(String url) {
-        return url+GRADES_URL;
+
+    public static String getGradesUrl(String url, String baseFolder) {
+        return url+"/"+baseFolder+"/"+GRADES_URL;
     }
 
-    public static String getMyScheduleUrl(String url) {
-        return url+MY_SCHEDULE_URL;
+    public static String getMyScheduleUrl(String url, String baseFolder) {
+        return url+"/"+baseFolder+"/"+MY_SCHEDULE_URL;
     }
 
-    public static String getCourseScheduleUrl(String url) {
-        return url+COURSE_SCHEDULE_URL;
+    public static String getCourseScheduleUrl(String url, String baseFolder) {
+        return url+"/"+baseFolder+"/"+COURSE_SCHEDULE_URL;
     }
 
-    public static String getSearchUrl(String url) {
-        return url+SEARCH_URL;
+    public static String getSearchUrl(String url, String baseFolder) {
+        return url+"/"+baseFolder+"/"+SEARCH_URL;
     }
 }

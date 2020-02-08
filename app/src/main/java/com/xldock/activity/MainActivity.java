@@ -1,9 +1,6 @@
 package com.xldock.activity;
 
-import android.app.ActionBar;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
@@ -30,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String roll;
     private Boolean exit = false;
     private String baseUrl;
+    private String baseFolder;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //get base url for web service
         baseUrl=PreferenceUtility.getInstance(this).getBaseUrl();
+        baseFolder=PreferenceUtility.getInstance(this).getBaseFolder();
 
     }
 
@@ -54,12 +53,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.action_refresh){
+        if(id == R.id.action_logout){
             startActivity(new Intent(this,LoginActivity.class).addFlags
                     (Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+            //set all back to normal on logout
             PreferenceUtility.getInstance(this).setPrefIsLoggedIn("false");
             PreferenceUtility.getInstance(this).setUserId("");
             PreferenceUtility.getInstance(this).setBaseUrl(null);
+            PreferenceUtility.getInstance(this).setBaseFolder(null);
             PreferenceUtility.getInstance(this).setIsAdminLoggedIn(false);
 
         }
@@ -129,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void search (View v) {
         startActivity(new Intent(this, GoogleFormActivity.class).
-                putExtra(Constants.DATA, Constants.getSearchUrl(baseUrl)).
+                putExtra(Constants.DATA, Constants.getSearchUrl(baseUrl, baseFolder)).
                 putExtra(Constants.FROM, "Student Search"));
     }
 }

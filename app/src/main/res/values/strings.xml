@@ -15,6 +15,7 @@
         Google Play Services on your device and relaunch this app.</string>
     <string name="provide_correct_credentials">Please provide correct credentials</string>
     <string name="valid_url">Please enter valid URL</string>
+    <string name="folder_name_empty">Folder name cant be empty</string>
     <string name="date">Date :&#160;</string>
     <string name="breakfast">Breakfast :&#160;</string>
     <string name="committee">%1$s :</string>
