@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -19,27 +20,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.xldock.R;
-import com.xldock.databinding.ActivityGoogleFormBinding;
+import com.xldock.databinding.ActivityAnnouncementsBinding;
 import com.xldock.utils.Constants;
 
 /**
  * Created by Honey Shah on 18-11-2017.
  */
 
-public class GoogleFormActivity extends AppCompatActivity {
+public class AnnouncementsActivity extends AppCompatActivity {
 
-    private ActivityGoogleFormBinding mBinder;
+    private ActivityAnnouncementsBinding mBinder;
     boolean loadingFinished = true;
     boolean redirect = false;
+    private static final String TAG = "AnnouncementsActivity";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinder = DataBindingUtil.setContentView(this, R.layout.activity_google_form);
+        mBinder = DataBindingUtil.setContentView(this, R.layout.activity_announcements);
         getSupportActionBar().show();
-        getSupportActionBar().setTitle(getIntent().getStringExtra(Constants.FROM));
+        getSupportActionBar().setTitle(getString(R.string.lbl_announcements));
+        Log.e(TAG, getSupportActionBar().getTitle().toString());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         initUI();
     }
 
@@ -62,8 +64,8 @@ public class GoogleFormActivity extends AppCompatActivity {
                 view.stopLoading();
 
                 view.setVisibility(View.INVISIBLE);
-                Toast.makeText(GoogleFormActivity.this, "Unable to reach AIS Server at the moment", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(GoogleFormActivity.this, MainActivity.class);
+                Toast.makeText(AnnouncementsActivity.this, "Unable to reach AIS Server at the moment", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(AnnouncementsActivity.this, MainActivity.class);
                 startActivity(intent);
             }
 

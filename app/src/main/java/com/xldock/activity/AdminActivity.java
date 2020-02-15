@@ -1,11 +1,9 @@
 package com.xldock.activity;
 
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,9 +11,12 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
 import com.xldock.R;
 import com.xldock.databinding.ActivityAdminBinding;
-import com.xldock.databinding.ActivityMainBinding;
 import com.xldock.utils.Constants;
 import com.xldock.utils.PreferenceUtility;
 
@@ -39,7 +40,9 @@ public class AdminActivity extends AppCompatActivity {
 
     private void initUI() {
         String baseUrl = PreferenceUtility.getInstance(this).getBaseUrl();
+        String baseFolder = PreferenceUtility.getInstance(this).getBaseFolder();
         mBinder.etUrl.setText(baseUrl);
+        mBinder.etFolder.setText(baseFolder);
     }
 
     @Override
@@ -56,23 +59,36 @@ public class AdminActivity extends AppCompatActivity {
 
     public void onSave(View v) {
         String baseUrl = mBinder.etUrl.getText().toString();
+        String folder = mBinder.etFolder.getText().toString();
         boolean isValidUrl = Patterns.WEB_URL.matcher(baseUrl).matches();
         if (!isValidUrl || (!baseUrl.contains("http://") && !baseUrl.contains("https://"))) {
             Toast.makeText(this, R.string.valid_url, Toast.LENGTH_SHORT).show();
-        } else {
+        }
+        else if (TextUtils.isEmpty(folder)) {
+            Toast.makeText(this, R.string.folder_name_empty, Toast.LENGTH_SHORT).show();
+        }
+        else {
             PreferenceUtility.getInstance(this).setBaseUrl(baseUrl);
+            PreferenceUtility.getInstance(this).setBaseFolder(folder);
             mBinder.etUrl.clearFocus();
+            mBinder.etFolder.clearFocus();
             mBinder.etUrl.setFocusableInTouchMode(false);
+            mBinder.etFolder.setFocusableInTouchMode(false);
             mBinder.etUrl.clearFocus();
+            mBinder.etFolder.clearFocus();
             mBinder.buttonEdit.setVisibility(View.VISIBLE);
             mBinder.buttonSave.setVisibility(View.GONE);
             initUI();
+
         }
     }
+
+
 
     public void onEdit(View v) {
         mBinder.etUrl.setFocusableInTouchMode(true);
         mBinder.etUrl.requestFocus();
+        mBinder.etFolder.setFocusableInTouchMode(true);
         mBinder.buttonEdit.setVisibility(View.GONE);
         mBinder.buttonSave.setVisibility(View.VISIBLE);
     }

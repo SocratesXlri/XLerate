@@ -7,18 +7,20 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.databinding.DataBindingUtil;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -50,6 +52,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 public class MessMenuActivity extends AppCompatActivity
         implements EasyPermissions.PermissionCallbacks, View.OnClickListener {
+    private static final String TAG = "MessMenuActivity";
     GoogleAccountCredential mCredential;
     private ActivityMessMenuBinding mBinder;
     ProgressDialog mProgress;
@@ -66,6 +69,9 @@ public class MessMenuActivity extends AppCompatActivity
     private int countButtonPressed = 0;
 
     private String range;
+    //TEMPORARY FIX: to avoid crash of stack over flow due never ending loop
+    private final int MAX_TRIES_FOR_SETUP_ACCOUNT = 5;
+    private int triesDone = 0;
 
     /**
      * Create the main activity.
@@ -125,14 +131,14 @@ public class MessMenuActivity extends AppCompatActivity
         });
     }
 
-    private void setAppropriateRange(){
+    private void setAppropriateRange() {
         String selectedItem = (String) mBinder.spinnerMenu.getSelectedItem();
-        String selectedMenu=PreferenceUtility.getInstance(this).getPrefMessMenu();
-        if(selectedMenu==null){
+        String selectedMenu = PreferenceUtility.getInstance(this).getPrefMessMenu();
+        if (selectedMenu == null) {
             if (selectedItem.equals("Old Hostel")) {
                 range = "Data Old Hostel!A2:G";
                 getResultsFromApi();
-            } else if((selectedItem.equals("New Hostel"))){
+            } else if ((selectedItem.equals("New Hostel"))) {
                 range = "Data New Hostel!A2:G";
                 // Initialize credentials and service object.
                 getResultsFromApi();
@@ -141,12 +147,12 @@ public class MessMenuActivity extends AppCompatActivity
                 // Initialize credentials and service object.
                 getResultsFromApi();
             }
-        }else{
+        } else {
             if (selectedMenu.equals("Old Hostel")) {
                 mBinder.spinnerMenu.setSelection(0);
                 range = "Data Old Hostel!A2:G";
                 getResultsFromApi();
-            } else if((selectedItem.equals("New Hostel"))){
+            } else if ((selectedItem.equals("New Hostel"))) {
                 mBinder.spinnerMenu.setSelection(1);
                 range = "Data New Hostel!A2:G";
                 // Initialize credentials and service object.
@@ -168,14 +174,14 @@ public class MessMenuActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
 
             case android.R.id.home:
                 onBackPressed();
                 break;
 
             case R.id.action:
-                countButtonPressed=0;
+                countButtonPressed = 0;
                 setData();
                 break;
 
@@ -223,8 +229,7 @@ public class MessMenuActivity extends AppCompatActivity
                     mBinder.tvSnacks.setText(list.get(5).toString());
                     mBinder.tvDinner.setText(list.get(6).toString());
                     mBinder.tvError.setVisibility(View.GONE);
-                }
-                catch (Exception e){
+                } catch (Exception e) {
                     mBinder.llDate.setVisibility(View.GONE);
                     mBinder.llBreakfast.setVisibility(View.GONE);
                     mBinder.llLunch.setVisibility(View.GONE);
@@ -261,7 +266,14 @@ public class MessMenuActivity extends AppCompatActivity
         if (!isGooglePlayServicesAvailable()) {
             acquireGooglePlayServices();
         } else if (mCredential.getSelectedAccountName() == null) {
-            chooseAccount();
+            //To stop never ending loop (TEMPORARY FIX)
+            if (triesDone < MAX_TRIES_FOR_SETUP_ACCOUNT) {
+                triesDone++;
+                chooseAccount();
+            }else{
+                mBinder.tvError.setVisibility(View.VISIBLE);
+                mBinder.tvError.setText(getString(R.string.msg_reinstall_the_app));
+            }
         } else if (!isDeviceOnline()) {
             mBinder.tvError.setVisibility(View.VISIBLE);
             mBinder.tvError.setText(getString(R.string.msg_no_connection));
@@ -286,8 +298,11 @@ public class MessMenuActivity extends AppCompatActivity
                 this, Manifest.permission.GET_ACCOUNTS)) {
             String accountName = getPreferences(Context.MODE_PRIVATE)
                     .getString(PREF_ACCOUNT_NAME, null);
+            Log.d(TAG, "chooseAccount:AccountName check:" + accountName);
             if (accountName != null) {
                 mCredential.setSelectedAccountName(accountName);
+                Log.d(TAG, "chooseAccount:" + mCredential.getSelectedAccountName());
+
                 getResultsFromApi();
             } else {
                 // Start a dialog from which the user can choose an account
@@ -335,6 +350,7 @@ public class MessMenuActivity extends AppCompatActivity
                         data.getExtras() != null) {
                     String accountName =
                             data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+                    Log.d(TAG, "onActivityResult: " + accountName);
                     if (accountName != null) {
                         SharedPreferences settings =
                                 getPreferences(Context.MODE_PRIVATE);
@@ -342,6 +358,7 @@ public class MessMenuActivity extends AppCompatActivity
                         editor.putString(PREF_ACCOUNT_NAME, accountName);
                         editor.apply();
                         mCredential.setSelectedAccountName(accountName);
+                        Log.d(TAG, "onActivityResult: " + mCredential.getSelectedAccountName());
                         getResultsFromApi();
                     }
                 }

@@ -1,12 +1,13 @@
 package com.xldock.activity;
 
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import com.xldock.R;
 import com.xldock.databinding.ActivityAisBinding;
@@ -23,6 +24,8 @@ public class AisActivity extends AppCompatActivity implements View.OnClickListen
     private ActivityAisBinding mBinder;
     private String roll;
     private String baseUrl;
+    private String baseFolder;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +37,7 @@ public class AisActivity extends AppCompatActivity implements View.OnClickListen
         Intent intent = getIntent();
         roll=intent.getStringExtra("roll") ;
         baseUrl=PreferenceUtility.getInstance(this).getBaseUrl();
+        baseFolder=PreferenceUtility.getInstance(this).getBaseFolder();
 
     }
 
@@ -60,19 +64,19 @@ public class AisActivity extends AppCompatActivity implements View.OnClickListen
         switch (v.getId()) {
             case R.id.button_grades:
                 startActivity(new Intent(this, GoogleFormActivity.class).
-                        putExtra(Constants.DATA, Constants.getGradesUrl(baseUrl)+roll+"&PWD=PreferenceUtility.getInstance(this).getPwd())").
+                        putExtra(Constants.DATA, Constants.getGradesUrl(baseUrl,baseFolder)+roll+"&PWD=PreferenceUtility.getInstance(this).getPwd())").
                         putExtra(Constants.FROM, getString(R.string.label_grades)));
 
                 break;
             case R.id.button_my_schedule:
                 startActivity(new Intent(this, GoogleFormActivity.class).
-                        putExtra(Constants.DATA, Constants.getMyScheduleUrl(baseUrl)+roll).
+                        putExtra(Constants.DATA, Constants.getMyScheduleUrl(baseUrl,baseFolder)+roll).
                         putExtra(Constants.FROM, getString(R.string.label_my_schedule)));
                 break;
 
             case R.id.button_course_schedule:
                 startActivity(new Intent(this, GoogleFormActivity.class).
-                        putExtra(Constants.DATA, Constants.getCourseScheduleUrl(baseUrl)).
+                        putExtra(Constants.DATA, Constants.getCourseScheduleUrl(baseUrl,baseFolder)).
                         putExtra(Constants.FROM, getString(R.string.label_course_schedule)));
                 break;
 

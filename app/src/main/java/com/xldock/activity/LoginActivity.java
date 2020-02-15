@@ -1,14 +1,15 @@
 package com.xldock.activity;
 
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import com.xldock.R;
 import com.xldock.WebServiceCalls;
@@ -70,8 +71,14 @@ public class LoginActivity extends AppCompatActivity implements WebServiceCalls.
                     PreferenceUtility.getInstance(this).setIsAdminLoggedIn(true);
                     PreferenceUtility.getInstance(this).setPrefIsLoggedIn("true");
                     String baseUrl = PreferenceUtility.getInstance(this).getBaseUrl();
-                    if (TextUtils.isEmpty(baseUrl))
+                    String baseFolder = PreferenceUtility.getInstance(this).getBaseFolder();
+                    if (TextUtils.isEmpty(baseUrl)) {
                         PreferenceUtility.getInstance(this).setBaseUrl(Constants.LIVE_URL);
+
+                    }
+                    if (TextUtils.isEmpty(baseFolder)) {
+                        PreferenceUtility.getInstance(this).setBaseFolder(Constants.LIVE_FOLDER);
+                    }
                     startActivity(new Intent(this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
                 } else {
                     Toast.makeText(this, R.string.provide_correct_credentials, Toast.LENGTH_SHORT).show();

@@ -6,6 +6,7 @@
     <string name="contact_spreadsheet_id">1DuoGOtjH7CREqTIaHiy1sNT480L6Y2uOLQj8L34D9E8</string>
     <string name="notification_spreadsheet_id">1jVxzX3l6-FGcI2GtXJ8fgtu-Ovx3RukN9LUvXij-zYY</string>
     <string name="msg_no_connection">No network connection available.</string>
+    <string name="msg_reinstall_the_app">Please uninstall the app and install it again.</string>
     <string name="access_contacts">This app needs to access your Google account (via Contacts).</string>
     <string name="make_call">This app needs to make call.</string>
     <string name="no_result">No results returned.</string>
@@ -15,6 +16,7 @@
         Google Play Services on your device and relaunch this app.</string>
     <string name="provide_correct_credentials">Please provide correct credentials</string>
     <string name="valid_url">Please enter valid URL</string>
+    <string name="folder_name_empty">Folder name cant be empty</string>
     <string name="date">Date :&#160;</string>
     <string name="breakfast">Breakfast :&#160;</string>
     <string name="committee">%1$s :</string>
@@ -48,7 +50,10 @@
     <string name="label_save">Save</string>
     <string name="lbl_save">Save</string>
     <string name="lbl_edit">Edit</string>
-
+    <string name="base_url">Base URL</string>
+    <string name="base_folder">Base Folder</string>
+    <string name="lbl_change_server">Change Server</string>
+    <string name="lbl_announcements">Announcements</string>
 
     <string-array name="menu_options">
         <item>Old Hostel</item>

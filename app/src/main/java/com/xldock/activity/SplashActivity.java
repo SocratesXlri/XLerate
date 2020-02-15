@@ -2,16 +2,17 @@ package com.xldock.activity;
 
 import android.app.ActionBar;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import com.xldock.R;
 import com.xldock.WebServiceCalls;
@@ -23,7 +24,7 @@ import com.xldock.utils.PreferenceUtility;
  * Created by Honey Shah on 11-01-2018.
  */
 
-public class SplashActivity extends AppCompatActivity{
+public class SplashActivity extends AppCompatActivity {
 
     private static int SPLASH_TIME_OUT= 600;
     @Override
